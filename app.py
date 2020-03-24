@@ -87,7 +87,12 @@ def get_walking_leg():
         if l['@mode'] == "Walk":
             fromCoords = str(l['from']['pos']['lat']) + "," + str(l['from']['pos']['lon'])
             toCoords = str(l['to']['pos']['lat']) + "," + str(l['to']['pos']['lon'])
-            return render_template('maps.html', fromCoords=fromCoords, toCoords=toCoords)
+            return render_template('maps.html', 
+                                    fromCoords=fromCoords, 
+                                    toCoords=toCoords, 
+                                    src="https://maps.googleapis.com/maps/api/js?key=" 
+                                        + os.getenv("GOOGLE_API_KEY")
+                                        +"&callback=initMap")
 
 
 # @app.route("/sms", methods=['GET', 'POST'])
